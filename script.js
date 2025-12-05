@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const elementoTexto = document.getElementById('texto-dinamico');
     
-    const elementoTexto = document.getElementById('texto-dinamico');
     
     if (elementoTexto) {
         const frases = [
