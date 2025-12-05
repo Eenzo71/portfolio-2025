@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Enzo Emanuel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div id="boot-overlay" class="d-none">
+        <div id="boot-content" class="container">
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top menu-transparente">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Enzo.Dev</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#quem-sou">Quem Sou</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#estatisticas-sistema">Status</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#meus-trabalhos">Trabalhos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#competencias">Competências</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="intro-wrapper">
+        <canvas id="matrix-canvas"></canvas>
+    <header class="painel-inicial d-flex align-items-center justify-content-center text-center">
+        <div class="container">
+            <div class="avatar-container mb-4 mx-auto">
+                <img src="imgs/ft_perfil.jpg" alt="Enzo Emanuel" class="img-fluid">
+            </div>
+            
+            <h1 class="titulo-principal">Enzo Emanuel Santiago Damsceno</h1>
+            <p class="subtitulo">Eu sou <span id="texto-dinamico" class="destaque-texto"></span></p>
+            
+            <div class="mt-5">
+                <a href="#meus-trabalhos" class="btn btn-primary btn-customizado px-4 py-2">Meus Projetos</a>
+                <a href="https://github.com/Eenzo71" target="_blank" class="btn btn-outline-light btn-customizado px-4 py-2 ms-2">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="quem-sou" class="container py-5 animar-entrada">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2 class="display-5 mb-4">Sobre Mim</h2>
+                    <p class="texto-corrido lead">
+                        Olá! Sou apaixonado por tecnologia e computadores em geral. Gosto muito de aprender sobre hardwares, softwares e malwares, pois meu objetivo no futuro é trabalhar com <strong>System Security</strong>. 
+                        <br><br>
+                        Atualmente, busco dominar as linguagens base da computação, como <strong>Java, C e C++</strong>, para entender a fundo como as coisas funcionam "por baixo do capô".
+                    </p>
+                    <a href="https://www.linkedin.com/in/enzo-emanuel-a702aa39a/" target="_blank" class="btn btn-outline-primary btn-customizado px-4 mt-3">
+                        <i class="bi bi-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+                <div class="col-md-6 text-center mt-4 mt-md-0">
+                    <img src="imgs/outra-ft-perfil.jpg" alt="Foto ilustrativa" class="img-fluid rounded-4 shadow-lg">
+                </div>
+            </div>
+        </section>
+
+        <section id="estatisticas-sistema" class="container py-5 animar-entrada">
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h2 class="stat-number" id="contador-projetos" data-target="15">0</h2>
+                        <p class="stat-label">> PROJETOS_COMPILADOS</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h2 class="stat-number" id="contador-anos" data-target="0">0</h2>
+                        <p class="stat-label">> ANOS_UPTIME (XP)</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3">
+                        <h2 class="stat-number" id="contador-techs" data-target="0">0</h2>
+                        <p class="stat-label">> MÓDULOS_DOMINADOS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+        <section id="meus-trabalhos" class="py-5 fundo-alternado animar-entrada">
+            <div class="container">
+                
+                <h2 class="text-center mb-5">Projetos Web</h2>
+                <div class="row g-4 justify-content-center mb-5">
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="caixa-projeto d-flex flex-column h-100">
+                            <h3>StreamFlow Player</h3>
+                            <p>Player de música híbrido com design Glassmorphism. Permite buscar músicas na API do iTunes (online) ou carregar arquivos MP3 locais.</p>
+            
+                            <div class="tags-tech mb-3">
+                                <span class="etiqueta bg-info text-dark"><i class="bi bi-cloud-arrow-down"></i> API REST</span>
+                                <span class="etiqueta bg-warning text-dark"><i class="bi bi-file-music"></i> JS Audio</span>
+                                <span class="etiqueta bg-primary text-white"><i class="bi bi-wind"></i> Tailwind</span>
+                            </div>
+
+                            <div class="mt-auto pt-4 d-flex gap-2">
+                                <a href="https://eenzo71.github.io/stream-flow-player/" target="_blank" class="btn btn-primary btn-sm flex-grow-1 fw-bold">
+                                    <i class="bi bi-play-fill"></i> Ver na Web
+                                </a>
+                            <a href="https://github.com/Eenzo71/stream-flow-player" target="_blank" class="btn btn-outline-light btn-sm" title="Ver Código">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="caixa-projeto d-flex flex-column h-100">
+                        <h3>DevFinder Pro</h3>
+                        <p>Buscador de perfis do GitHub. Exibe estatísticas, repositórios recentes e salva o histórico de pesquisa localmente.</p>
+            
+                        <div class="tags-tech mb-3">
+                            <span class="etiqueta bg-light text-dark"><i class="bi bi-search"></i> Fetch API</span>
+                            <span class="etiqueta bg-secondary text-white"><i class="bi bi-hdd"></i> LocalStorage</span>
+                            <span class="etiqueta bg-dark border border-secondary text-white"><i class="bi bi-moon"></i> Dark Mode</span>
+                        </div>
+
+                        <div class="mt-auto pt-4 d-flex gap-2">
+                            <a href="https://eenzo71.github.io/devfinder-explorer/" target="_blank" class="btn btn-primary btn-sm flex-grow-1 fw-bold">
+                                <i class="bi bi-play-fill"></i> Ver na Web
+                            </a>
+                            <a href="https://github.com/Eenzo71/devfinder-explorer" target="_blank" class="btn btn-outline-light btn-sm" title="Ver Código">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="caixa-projeto d-flex flex-column h-100">
+                        <h3>Hardware Quest</h3>
+                        <p>Jogo da memória temático. Possui lógica de sorteio aleatório de peças, cronômetro, contador de jogadas e efeitos 3D.</p>
+                    
+                        <div class="tags-tech mb-3">
+                            <span class="etiqueta bg-success text-white"><i class="bi bi-puzzle"></i> Game Logic</span>
+                            <span class="etiqueta bg-danger text-white"><i class="bi bi-box"></i> CSS 3D</span>
+                            <span class="etiqueta bg-dark border border-secondary text-white">DOM</span>
+                        </div>
+
+                        <div class="mt-auto pt-4 d-flex gap-2">
+                            <a href="https://eenzo71.github.io/hardware-quest-memory/" target="_blank" class="btn btn-primary btn-sm flex-grow-1 fw-bold">
+                                <i class="bi bi-play-fill"></i> Ver na Web
+                            </a>
+                            <a href="https://github.com/Eenzo71/hardware-quest-memory" target="_blank" class="btn btn-outline-light btn-sm" title="Ver Código">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="text-center mb-5 pt-4 border-top border-secondary">Sistemas & Hardware</h2>
+                <div class="row g-4 justify-content-center">
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="caixa-projeto">
+                            <h3>Configuração de Boot</h3>
+                            <p>Customização avançada de pendrives bootáveis e instalação automatizada de Windows.</p>
+                            <div class="tags-tech">
+                                <span class="etiqueta"><i class="bi bi-usb-drive-fill"></i> Ventoy</span>
+                                <span class="etiqueta"><i class="bi bi-terminal-fill"></i> Scripts</span>
+                                <span class="etiqueta"><i class="bi bi-cpu-fill"></i> Hardware</span>
+                            </div>
+                            <div class="mt-auto pt-4">
+                                <button class="btn btn-outline-secondary btn-sm w-100 disabled">
+                                    <i class="bi bi-cone-striped"></i> Em Construção
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="caixa-projeto">
+                            <h3>FileSort Pro</h3>
+                            <p>Aplicação Desktop de automação que organiza arquivos inteligentemente. Possui Dashboard HTML, logs e roda em segundo plano.</p>
+                            <div class="tags-tech">
+                                <span class="etiqueta bg-primary text-white"><i class="bi bi-filetype-py"></i> Python</span>
+                                <span class="etiqueta"><i class="bi bi-window-desktop"></i> GUI</span>
+                                <span class="etiqueta"><i class="bi bi-robot"></i> Automação</span>
+                            </div>
+                            <a href="https://github.com/Eenzo71/FileSortPro" target="_blank" class="btn btn-outline-light mt-4 btn-sm">
+                                <i class="bi bi-github"></i> Ver no GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="protocolos-sistema" class="container py-5 animar-entrada">
+            <h3 class="destaque-texto mb-4">> System_Protocols (Soft Skills)</h3>
+            <div class="terminal-window p-3">
+                <div class="terminal-header mb-3">root@enzo-pc:~# ./check_skills.sh</div>
+                <div class="text-white">
+                    <div class="mb-2">
+                        <span class="text-secondary">Checking protocol:</span> LIDERANÇA ...................... <span class="text-success">[ ENABLED ]</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary">Checking protocol:</span> COMUNICAÇÃO .................... <span class="text-success">[ OK ]</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary">Checking protocol:</span> RESOLUÇÃO_PROBLEMAS ............ <span class="text-success">[ ACTIVE ]</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary">Checking protocol:</span> TRABALHO_EM_EQUIPE ............. <span class="text-success">[ DETECTED ]</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary">Checking protocol:</span> ADAPTABILIDADE ................. <span class="text-success">[ HIGH ]</span>
+                    </div>
+                    <div class="mt-3">
+                        <span class="text-primary">> All systems operational. User ready for deployment.</span><span class="cursor-piscar"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <section id="competencias" class="container py-5 animar-entrada">
+            <div class="row g-5">
+                
+                <div class="col-md-6 text-center border-end-md border-secondary">
+                    <h3 class="mb-4">Habilidades Web</h3>
+                    <div class="grid-habilidades justify-content-center">
+                        <span class="item-habilidade">HTML5 & CSS3</span>
+                        <span class="item-habilidade">JavaScript (ES6+)</span>
+                        <span class="item-habilidade">Bootstrap 5</span>
+                        <span class="item-habilidade">Firebase / Supabase</span>
+                        <span class="item-habilidade">SQL</span>
+                        <span class="item-habilidade">Git & GitHub</span>
+                        <span class="item-habilidade">Responsividade</span>
+                        <span class="item-habilidade">Metodologias Ágeis</span>
+                    </div>
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <h3 class="mb-4">Linguagens & Hardware</h3>
+                    <div class="grid-habilidades justify-content-center">
+                        <span class="item-habilidade">C / C++</span>
+                        <span class="item-habilidade">Java</span>
+                        <span class="item-habilidade">Lazarus / Pascal</span>
+                        <span class="item-habilidade">Manutenção de Hardware</span>
+                        <span class="item-habilidade">Ventoy / Boot</span>
+                        <span class="item-habilidade">Scripts / Automação</span>
+                        <span class="item-habilidade">Noções de Segurança</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="terminal-section" class="container py-5 animar-entrada">
+        <h3 class="destaque-texto mb-4">> Terminal_Access</h3>
+        <div class="terminal-interativo">
+            <div class="terminal-top-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-title">guest@enzo-pc: ~ (bash)</span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+                <div class="terminal-output" id="terminal-output">
+                    <div class="mb-2">Welcome to EnzoOS v1.0. Type <span class="text-success">'help'</span> to see available commands.</div>
+                </div>
+                <div class="input-line">
+                    <span class="prompt-user">guest@enzo-pc:~$</span>
+                    <input type="text" id="cmd-input" autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer class="rodape text-center p-4 section-darker">
+        <p class="lead mb-3">Vamos conversar?</p>
+        <div class="mb-3">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=enzo.emanuel.enzo1346@gmail.com" target="_blank" class="text-white-50 mx-2 fs-5" title="Abrir no Gmail">enzo.emanuel.enzo1346@gmail.com</a>
+            <button id="btn-copiar" class="btn btn-sm btn-outline-secondary ms-2"><i class="bi bi-clipboard"></i> Copiar</button>
+        </div>
+        <div>
+            <a href="https://www.linkedin.com/in/enzo-emanuel-a702aa39a/" target="_blank" class="btn-social mx-2"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/Eenzo71" target="_blank" class="btn-social mx-2"><i class="bi bi-github"></i></a>
+        </div>
+        <p class="m-0 text-secondary">&copy; 2025 Enzo Emanuel. Janaúba - MG.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
