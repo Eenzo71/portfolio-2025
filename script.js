@@ -1,7 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
     const elementoTexto = document.getElementById('texto-dinamico');
-    
-    
+
+    const limiteRecargas = 6;
+    let contadorBoot = localStorage.getItem('bootCounter');
+
+    if (contadorBoot === null) {
+        contadorBoot = 0;
+    } else {
+        contadorBoot = parseInt(contadorBoot);
+    }
+    if (contadorBoot === 0 || contadorBoot >= limiteRecargas) {
+        iniciarReboot(true);
+        localStorage.setItem('bootCounter', '1');
+    } else {
+        localStorage.setItem('bootCounter', (contadorBoot + 1).toString());
+    }
+
     if (elementoTexto) {
         const frases = [
             "Apaixonado por Hardware", 
@@ -247,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             case 'contact':
                 adicionarLinha("Initializing Contact Protocol...");
-                adicionarLinha("Email: enzo.emanuel.enzo1346@gmail.com");
+                adicionarLinha("Email: <a href='https://mail.google.com/mail/?view=cm&fs=1&to=enzo.emanuel.enzo1346@gmail.com' target='_blank' class='text-info'>enzo.emanuel.enzo1346@gmail.com</a>");
                 adicionarLinha("LinkedIn: <a href='https://www.linkedin.com/in/enzo-emanuel-a702aa39a/' target='_blank' class='text-info'>Ver Perfil</a>");
                 break;
             
@@ -268,7 +282,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function iniciarReboot() {
+    function iniciarReboot(apenasAnimacao = false) {
         const overlay = document.getElementById('boot-overlay');
         const content = document.getElementById('boot-content');
         
@@ -297,8 +311,8 @@ document.addEventListener("DOMContentLoaded", function() {
         let delay = 0;
         
         logs.forEach((line, index) => {
-            const randomTime = Math.random() * 300 + 100; 
-            delay += randomTime;
+            const tempoExtra = apenasAnimacao ? Math.random() * 200 : Math.random() * 300 + 100;
+            delay += tempoExtra;
 
             setTimeout(() => {
                 const p = document.createElement('div');
@@ -307,14 +321,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 p.innerHTML = `<span class='log-time'>[ ${time} ]</span> ${line}`;
                 content.appendChild(p);
                 
-                window.scrollTo(0, 0);
+                window.scrollTo(0, document.body.scrollHeight); 
+                if(content.parentElement) content.parentElement.scrollTop = content.scrollHeight;
+
             }, delay);
         });
 
         setTimeout(() => {
-            overlay.classList.add('d-none');
-            window.scrollTo(0, 0);
-            location.reload();
+            if (apenasAnimacao) {
+                overlay.classList.add('d-none');
+                window.scrollTo(0, 0);
+            } else {
+                overlay.classList.add('d-none');
+                window.scrollTo(0, 0);
+                location.reload();
+            }
         }, delay + 1500);
     }
 });
