@@ -74,30 +74,83 @@ document.addEventListener("DOMContentLoaded", function() {
         observador.observe(secao);
     });
 
-    function ativarDecodificacaoContadores() {
+    async function ativarDecodificacaoContadores() {
+        const usuario = 'Eenzo71';
+        try {
+            const response = await fetch(`https://api.github.com/users/${usuario}`);
+            if (response.ok) {
+                const data = await response.json();
+                const repoCounter = document.getElementById('contador-repos');
+                if (repoCounter) repoCounter.setAttribute('data-target', data.public_repos);
+            }
+        } catch (e) { console.error("Erro offline repos"); }
+
+        const commitCounter = document.getElementById('contador-commits');
+        if (commitCounter) {
+            const cacheKey = 'github_total_commits_' + usuario;
+            const cacheData = localStorage.getItem(cacheKey);
+            const agora = new Date().getTime();
+            
+            let totalCommits = 0;
+            let usarCache = false;
+
+            if (cacheData) {
+                const json = JSON.parse(cacheData);
+                if (agora - json.timestamp < 86400000) {
+                    totalCommits = json.count;
+                    usarCache = true;
+                    console.log("Usando cache de commits para economizar API");
+                }
+            }
+
+            if (!usarCache) {
+                try {
+                    console.log("Escaneando repositórios por commits...");
+                    const reposRes = await fetch(`https://api.github.com/users/${usuario}/repos?per_page=100`);
+                    const repos = await reposRes.json();
+                    
+                    const promises = repos.map(async (repo) => {
+                        const commitsRes = await fetch(`https://api.github.com/repos/${usuario}/${repo.name}/commits?per_page=1`);
+                        const linkHeader = commitsRes.headers.get('link');
+                        
+                        if (linkHeader) {
+                            const match = linkHeader.match(/&page=(\d+)>; rel="last"/);
+                            return match ? parseInt(match[1]) : 1;
+                        } else {
+                            const data = await commitsRes.json();
+                            return Array.isArray(data) ? data.length : 0;
+                        }
+                    });
+
+                    const counts = await Promise.all(promises);
+                    totalCommits = counts.reduce((a, b) => a + b, 0);
+
+                    localStorage.setItem(cacheKey, JSON.stringify({
+                        count: totalCommits,
+                        timestamp: agora
+                    }));
+
+                } catch (error) {
+                    console.error("Erro ao contar commits (provável limite de API):", error);
+                    totalCommits = cacheData ? JSON.parse(cacheData).count : 50; 
+                }
+            }
+            
+            commitCounter.setAttribute('data-target', totalCommits);
+        }
+
         const stats = document.querySelectorAll('.stat-number');
-        
         stats.forEach(stat => {
             let alvo = parseInt(stat.getAttribute('data-target'));
 
-            if (stat.id === 'contador-techs') {
-                alvo = document.querySelectorAll('.item-habilidade').length;
-            }
-
-            if (stat.id === 'contador-anos') {
-                const anoInicio = 2022;
-                const anoAtual = new Date().getFullYear();
-                alvo = anoAtual - anoInicio;
-            }
+            if (stat.id === 'contador-techs') alvo = document.querySelectorAll('.item-habilidade').length;
+            if (stat.id === 'contador-anos') alvo = new Date().getFullYear() - 2022;
 
             let iteracoes = 0;
-            const maxIteracoes = 40;
-
             const intervalo = setInterval(() => {
                 stat.innerText = Math.floor(Math.random() * (alvo + 20));
                 iteracoes++;
-
-                if (iteracoes >= maxIteracoes) {
+                if (iteracoes >= 40) {
                     clearInterval(intervalo);
                     stat.innerText = alvo;
                 }
