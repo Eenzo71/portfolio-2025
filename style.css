@@ -243,7 +243,10 @@ body {
     animation: blink 1s infinite;
     vertical-align: middle;
 }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }        
+@keyframes blink { 
+    0%, 100% { opacity: 1; } 
+    50% { opacity: 0; box-shadow: 0 0 5px var(--cor-destaque); } 
+}      
     
 .stat-number {
     font-family: 'Courier Prime', monospace;

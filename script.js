@@ -1,5 +1,42 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const elementoTexto = document.getElementById('texto-dinamico');
+    console.log("%cSTOP!", "color: red; font-size: 40px; font-weight: bold; text-shadow: 2px 2px black;");
+    console.log("%cVocê encontrou a área de desenvolvedor.", "color: #0d6efd; font-size: 16px; font-weight: bold;");
+    console.log("%cSe você está lendo isso, provavelmente compartilha da mesma paixão de ver como as coisas funcionam. Vamos conversar!", "color: #e0e0e0; font-size: 14px;");
+
+    let tituloOriginal = document.title;
+    window.addEventListener('blur', () => {
+        document.title = "⚠️ SYSTEM_PAUSED | Volte logo!";
+    });
+
+    window.addEventListener('focus', () => {
+        document.title = tituloOriginal;
+    });
+
+    const konamiCode = [
+        "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", 
+        "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", 
+        "b", "a"
+    ];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                ativarModoHacker();
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+
+    function ativarModoHacker() {
+        alert("ACCESS GRANTED: Root privileges enabled.");
+        document.documentElement.style.setProperty('--cor-destaque', '#00ff00');
+        const terminalBody = document.querySelector('.terminal-body');
+        if(terminalBody) terminalBody.style.color = '#00ff00';
+    }
 
     const limiteRecargas = 6;
     let contadorBoot = localStorage.getItem('bootCounter');
@@ -16,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
         localStorage.setItem('bootCounter', (contadorBoot + 1).toString());
     }
 
+    const elementoTexto = document.getElementById('texto-dinamico');
     if (elementoTexto) {
         const frases = [
             "Apaixonado por Hardware", 
@@ -326,6 +364,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 terminalOutput.innerHTML = '';
                 adicionarLinha("Terminal buffer cleared.");
                 break;
+
+            case 'sudo':
+                adicionarLinha("<span class='text-danger'>Permission denied</span>: user 'guest' is not in the sudoers file. This incident will be reported.");
+                break;
                 
             case '':
                 break;
@@ -343,28 +385,55 @@ document.addEventListener("DOMContentLoaded", function() {
 
         overlay.classList.remove('d-none');
         content.innerHTML = '';
-        
-        const logs = [
+
+        const headerLogs = [
             "Starting EnzoOS Kernel v1.0.5...",
             "[    0.000000] Linux version 6.5.0-generic (root@enzo-pc) (gcc version 12.3.0)",
             "[    0.234100] ACPI: DSDT 0x000000008A1B0000 0000F4 (v02 ALASKA A M I)",
+        ];
+        const logsNormal = [
+            ...headerLogs,
             "[ <span class='log-ok'>OK</span> ] Started Show Plymouth Boot Screen.",
-            "[ <span class='log-ok'>OK</span> ] Reached target Local File Systems.",
+            "[ <span class='log-ok'>OK</span> ] Found Device /dev/nvme0n1.",
             "[ <span class='log-ok'>OK</span> ] Mounted /boot/efi.",
-            "[ <span class='log-ok'>OK</span> ] Started File System Check on /dev/disk/by-uuid/ENZO-71.",
+            "[ <span class='log-ok'>OK</span> ] Loaded Module: <span class='text-warning'>Konami Cheat Code Support</span>.",
             "Loading Portfolio Modules...",
-            "Loading HTML5 Interface...",
-            "Loading CSS3 Stylesheets...",
             "[ <span class='log-ok'>OK</span> ] Started Network Manager.",
-            "[ <span class='log-ok'>OK</span> ] Reached target Network.",
+            "[ <span class='log-ok'>OK</span> ] Reached target Graphical Interface.",
+            "Welcome to Enzo's Portfolio!"
+        ];
+        const logsSystemError = [
+            ...headerLogs,
+            "[ <span class='log-ok'>OK</span> ] Started Show Plymouth Boot Screen.",
+            "[ <span class='text-danger'>FAILED</span> ] Failed to load Kernel Video Module.",
+            "<span class='text-warning'>[ WARN ]</span> Retrying with generic VESA drivers...",
+            "[ <span class='log-ok'>OK</span> ] Video Adapter initialized (Low Res).",
+            "[ <span class='log-ok'>OK</span> ] Checking cryptic filesystems...",
+            "<span class='text-warning'>[ DETECTED ]</span> Legacy 'Konami' backdoor active in memory.",
+            "Recovering journals...",
+            "[ <span class='log-ok'>OK</span> ] Cleaned up orphaned inodes.",
+            "Welcome to Enzo's Portfolio!"
+        ];
+        const logsNetError = [
+            ...headerLogs,
+            "[ <span class='log-ok'>OK</span> ] Mounted /boot/efi.",
+            "Configuring network interfaces...",
+            "[ <span class='text-danger'>FAILED</span> ] DHCP Lease failed on eth0.",
+            "[ <span class='text-danger'>FAILED</span> ] Temporary failure in name resolution.",
+            "Switching to offline local mode...",
+            "[ <span class='log-ok'>OK</span> ] <span class='text-warning'>Konami Protocol</span> found in local cache.",
+            "[ <span class='log-ok'>OK</span> ] Bypassing remote authentication.",
             "Starting Graphical Interface...",
             "Welcome to Enzo's Portfolio!"
         ];
 
+        const cenarios = [logsNormal, logsSystemError, logsNetError];
+        const logsEscolhidos = cenarios[Math.floor(Math.random() * cenarios.length)];
+
         let delay = 0;
         
-        logs.forEach((line, index) => {
-            const tempoExtra = apenasAnimacao ? Math.random() * 200 : Math.random() * 300 + 100;
+        logsEscolhidos.forEach((line, index) => {
+            const tempoExtra = apenasAnimacao ? Math.random() * 150 : Math.random() * 300 + 100;
             delay += tempoExtra;
 
             setTimeout(() => {
@@ -383,7 +452,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(() => {
             if (apenasAnimacao) {
                 overlay.classList.add('d-none');
-                window.scrollTo(0, 0);
+                window.scrollTo(0, 0); 
             } else {
                 overlay.classList.add('d-none');
                 window.scrollTo(0, 0);
