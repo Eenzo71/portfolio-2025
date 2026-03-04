@@ -209,6 +209,22 @@
                             </a>
                         </div>
                     </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="caixa-projeto d-flex flex-column h-100">
+                            <h3>Sistema PDV - Açaiteria</h3>
+                            <p>Sistema Desktop de Ponto de Venda (offline) com gestão de estoque, fechamento de caixa e painel de relatórios.</p>
+                            <div class="tags-tech mb-3">
+                                <span class="etiqueta bg-primary text-white"><i class="bi bi-filetype-py"></i> Python</span>
+                                <span class="etiqueta bg-success text-white"><i class="bi bi-database"></i> SQLite/JSON</span>
+                                <span class="etiqueta bg-secondary text-white"><i class="bi bi-printer"></i> Impressora Térmica</span>
+                            </div>
+                            <div class="mt-auto pt-4 d-flex">
+                                <button class="btn btn-outline-light btn-sm w-100 fw-bold" data-bs-toggle="modal" data-bs-target="#modalPdvAcai">
+                                    <i class="bi bi-info-circle"></i> Ver Detalhes
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -293,6 +309,36 @@
             </div>
         </div>
     </section>
+    <div class="modal fade" id="modalPdvAcai" tabindex="-1" aria-labelledby="modalPdvAcaiLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-dark text-light border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-primary fw-bold" id="modalPdvAcaiLabel">Sistema de Vendas (PDV) - Açaí</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="imgs/area_de_vendas.png" alt="Tela do Sistema PDV" class="img-fluid rounded mb-4 border border-secondary shadow">
+                
+                    <h6 class="text-info fw-bold">Sobre o Projeto</h6>
+                    <p>Desenvolvimento completo de um Sistema de Ponto de Venda (PDV) voltado para ambiente Desktop (offline-first). O foco do projeto foi criar uma interface ágil, intuitiva e à prova de falhas para o atendimento no balcão de um comércio rápido, garantindo que o sistema funcione perfeitamente sem depender de conexão com a internet.</p>
+                
+                    <h6 class="text-info fw-bold mt-4">Principais Funcionalidades</h6>
+                    <ul class="text-secondary">
+                        <li><strong>Frente de Caixa:</strong> Interface com botões grandes e organizados por categorias para registro ágil de produtos, adicionais e acompanhamentos.</li>
+                        <li><strong>Gestão de Estoque Dinâmica:</strong> Baixa automática dos insumos a cada nova venda registrada.</li>
+                        <li><strong>Integração de Hardware:</strong> Comunicação direta com impressoras térmicas (CUPOM) não fiscais via comandos para impressão de recibos e pedidos da cozinha.</li>
+                        <li><strong>Relatórios e Dashboards:</strong> Fechamento de caixa automatizado com geração de planilhas e visualização de dados diários.</li>
+                    </ul>
+                
+                    <h6 class="text-info fw-bold mt-4">Arquitetura e Tecnologias</h6>
+                    <p class="text-secondary">Construído em <strong>Python</strong> utilizando lógica de interface gráfica, persistência de dados local segura estruturada e modularização de código para facilitar atualizações futuras.</p>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </main>
 
     <footer class="rodape text-center p-4 section-darker">
